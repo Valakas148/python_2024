@@ -20,6 +20,8 @@ print(','.join(num2))
   """
 
 str2 = 'fjajf 111 a22v3'
+num3 = ','.join(''.join(i if i.isdigit() else ' ' for i in str2).split())
+print(num3)
 
 
 """
@@ -137,17 +139,22 @@ print(task_func7([1,2,3,4,5]))
 """
 
 
-def task_func8(input):
-    min_val = min(input)
-    without_dub = list(set(input))
-    changed_list =input[:]
-    for i in range(len(input),4):
-        changed_list[i]= 'X'
+def find_min(input):
+    return min(input)
 
-    return f"Min- {min_val} \nwithout_dub-{without_dub} \nchanged_list-{changed_list}"
+def without_duplicates(input):
+    return list(set(input))
+
+def replace(input):
+    changed_list = input[:]
+    for i in range(3, len(changed_list), 4):
+        changed_list[i] = 'X'
+    return changed_list
 
 list2 = [22, 3,5,2,8,2,-23, 8,23,5]
-print(task_func8(list2))
+print(find_min(list2))
+print(without_duplicates(list2))
+print(replace(list2))
 
 
 """
