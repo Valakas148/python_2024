@@ -199,21 +199,6 @@ def menu():
     print("3. Замінити кожне 4-те значення на 'X'")
     print("4. Вихід")
 
-
-
-
-def find_min(input):
-    return min(input)
-
-def without_duplicates(input):
-    return list(set(input))
-
-def replace(input):
-    changed_list = input[:]
-    for i in range(3, len(changed_list), 4):
-        changed_list[i] = 'X'
-    return changed_list
-
 while True:
     menu()
     choice = input("Виберіть варіант: ")
