@@ -82,3 +82,23 @@ print(expanded_form(70304))
 """
 
 print('TASK4')
+
+
+def decorator_task4(func):
+    count = 0
+    def wrapper(*args, **kwargs):
+        nonlocal count
+        count += 1
+        print(f'Викликів{count}')
+        func(*args, **kwargs)
+
+    return wrapper
+
+
+@decorator_task4
+def test():
+    print('hello')
+
+
+test()
+test()
