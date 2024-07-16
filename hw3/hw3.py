@@ -129,10 +129,16 @@ class Book(Printable):
         super().__init__()
         self.name = name
 
+    def print(self):
+        return f"Book Name - {self.name}"
+
 class Magazine(Printable):
     def __init__(self,name):
         super().__init__()
         self.name = name
+
+    def print(self):
+        return f"Magazine Name - {self.name}"
 
 """
 3) Створити клас Main в якому буде:
@@ -143,12 +149,42 @@ class Magazine(Printable):
 """
 
 class Main():
-    def __init__(self, printable_list):
-        self.printable_list = printable_list
+    def __init__(self):
+        self.printable_list = []
 
     def add(self,name):
         if isinstance(name,(Book,Magazine)):
             self.printable_list.append(name)
+        else: print('NOT CLASS')
 
 
     def show_all_magazines(self):
+        for item in self.printable_list:
+            if isinstance(item,Magazine):
+                print(item.print())
+
+    def show_all_books(self):
+        for item in self.printable_list:
+            if isinstance(item,Book):
+                print(item.print())
+
+book1 = Book('Viking')
+book2 = Book('LOTR')
+magazine1 = Magazine('1999')
+magazine2 = Magazine('New York Times')
+
+main = Main()
+main.add(book1)
+main.add(magazine1)
+print('Books_test1:')
+main.show_all_books()
+print('Magazines:')
+main.show_all_magazines()
+main.add(book2)
+main.add(magazine2)
+print('Books_test2:')
+main.show_all_books()
+print('Magazines:')
+main.show_all_magazines()
+
+main.add('aa')
