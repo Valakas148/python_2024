@@ -1,10 +1,9 @@
 
-
+import uuid
+import json
 """
 1) Є ось такий файл... ваша задача записати в новий файл тільки email'ли з доменом gmail.com (Хеш то що з ліва записувати не потрібно)
 """
-import json
-
 try:
     with open('emails.txt', 'rb') as file, open('new_emails.txt', 'wb') as new_file:
 
@@ -89,8 +88,20 @@ class AddProduct:
             return []
 
     def search_most_expensive(self):
-        expensive = max(self.products, key=lambda product: product['price'])
-        return expensive
+        try:
+            with open(self.file, 'r') as f:
+                data = json.load(f)
+                if data:
+                    expensive = max(self.products, key=lambda product: product['price'])
+                    if expensive:
+                            print(expensive)
+                    else:
+                        print('No products found.')
+        except FileNotFoundError:
+            return []
+        except json.JSONDecodeError:
+            return []
+
 
 
     def show_all(self):
@@ -111,9 +122,6 @@ class AddProduct:
         self.products =  [product for product in self.products if product['id'] != product_id]
         self.save_products()
 
-product1 = Book('apple', 10)
-product2 = Book('mango', 20)
-print(product1.get_info())
 
 def menu():
     purchase = AddProduct()
@@ -125,6 +133,7 @@ def menu():
         print('3. Search product')
         print('4. Search most expensive product')
         print('5. Delete a product')
+        print('6. Quit')
         choice = input('Enter your choice: ')
         match choice:
             case '1':
